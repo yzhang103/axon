@@ -1,0 +1,10 @@
+<!-- VICON AXON-odometry -->
+<launch>
+    <param name="/use_sim_time" value="false"/>
+
+    <node pkg="tf" type="static_transform_publisher" name="vicon_odometry_tf" args="0 0 0 0 0 0 vicon odom 10" />
+
+    <include file="$(find viconxbee)/launch/viconxbee.launch"/>
+    <include file="$(find axon_link)/launch/joy_axon.launch"/>
+    <include file="$(find tf_savemfile)/launch/tf_save.launch"/>
+</launch>

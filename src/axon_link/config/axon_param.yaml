@@ -1,0 +1,4 @@
+axon_parameter: {SerialPort: /dev/ttyUSB2, BaudRate: 38400}
+main_freg: 120
+tf_rev_delay_t: 150
+use_rev_encode: 1

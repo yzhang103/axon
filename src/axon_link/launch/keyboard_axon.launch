@@ -1,0 +1,10 @@
+<!-- Joystick Control AXON platform -->
+<launch>
+  <param name="/use_sim_time" value="false"/>
+
+  <rosparam file="$(find axon_link)/config/axon_param.yaml" command="load"/>
+  <node pkg="axon_link" name="axon_link" type="axon_link" output="screen"/>
+<!--
+  <node pkg="axon_link" name="keyboard_ctrl_axon_node" type="keyboard_ctrl_axon_node"/>
+-->
+</launch>

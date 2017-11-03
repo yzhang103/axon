@@ -1,0 +1,33 @@
+<!-- Joystick Control & Realsense Mapping AXON platform -->
+<launch>
+  <arg name="bag_record" value="true"/>
+  <param name="/use_sim_time" value="false"/>
+<!--
+  <rosparam file="$(find axon_link)/config/axon_param.yaml" command="load"/>
+  <node pkg="axon_link" name="axon_link" type="axon_link" output="screen"/>
+
+  <node pkg="joy" name="joy_node" type="joy_node">
+    <param name="joy_node/dev" value="/dev/input/js0"/>
+  </node>
+
+  <node pkg="axon_link" name="joy_ctrl_axon_node" type="joy_ctrl_axon_node" output="screen"/>
+-->
+  <include file="$(find viconxbee)/launch/vicon_odometry.launch"/>
+
+<!-- Open Realsense R200 ->
+<!--
+  <include file="$(find realsense_slam)/launch/open_realsense.launch"/>
+-->
+
+  <include file="$(find realsense_slam)/launch/rtabmap_realsense_scan_odom.launch"/>
+
+  <node pkg="rosbag" type="record" name="rosbag_record"
+        args="/viconxbee_node/mocap/pose
+              /viconxbee_node/viconPoseTopic
+              /vicon_odometry/odom
+              /rtabmap/cloud_map
+              /rtabmap/proj_map
+              /kinect_scan
+              /tf" if="$(arg bag_record)" />
+</launch>
+
